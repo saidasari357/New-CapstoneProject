@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: expense-recorder
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: expense-recorder-sa
+  namespace: expense-recorder

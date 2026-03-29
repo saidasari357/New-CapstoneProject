@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+  namespace: expense-recorder
+spec:
+  type: LoadBalancer
+  selector:
+    app: expense-frontend
+    color: blue
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-svc
+  namespace: expense-recorder
+spec:
+  type: ClusterIP
+  selector:
+    app: expense-backend
+    color: blue
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080

@@ -1,0 +1,13 @@
+location            = "eastus"
+resource_group_name = "rg-expense-recorder"
+service_plan_name   = "asp-expense-recorder"
+
+frontend_webapp_name = "app-expense-frontend"
+backend_webapp_name  = "app-expense-backend"
+slot_name            = "green"
+
+acr_id           = "/subscriptions/<subscription-id>/resourceGroups/<rg>/providers/Microsoft.ContainerRegistry/registries/<acr-name>"
+acr_login_server = "<acr-name>.azurecr.io"
+
+frontend_image = "expense-frontend:latest"
+backend_image  = "expense-backend:latest"

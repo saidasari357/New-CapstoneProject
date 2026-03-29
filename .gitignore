@@ -1,0 +1,20 @@
+# Node
+node_modules/
+
+# Build outputs
+frontend/dist/
+
+# Logs
+*.log
+
+# Local env
+.env
+.env.*
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+
+# IDE
+.vscode/

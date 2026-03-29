@@ -1,0 +1,28 @@
+{
+  "expenses": [
+    {
+      "id": "seed-1",
+      "title": "Groceries",
+      "amount": 72.5,
+      "category": "Food",
+      "spentAt": "2026-03-26",
+      "createdAt": "2026-03-26T08:30:00.000Z"
+    },
+    {
+      "id": "seed-2",
+      "title": "Internet Bill",
+      "amount": 49.99,
+      "category": "Utilities",
+      "spentAt": "2026-03-22",
+      "createdAt": "2026-03-22T10:00:00.000Z"
+    },
+    {
+      "id": "seed-3",
+      "title": "Cab Ride",
+      "amount": 18,
+      "category": "Transport",
+      "spentAt": "2026-03-21",
+      "createdAt": "2026-03-21T18:12:00.000Z"
+    }
+  ]
+}
