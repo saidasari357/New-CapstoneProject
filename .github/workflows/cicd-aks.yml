@@ -57,7 +57,7 @@ jobs:
 
       - name: Trivy Scan ${{ matrix.component }} Image
         uses: aquasecurity/trivy-action@master
-          with:
+        with:
           image-ref: ${{ env.IMAGE_URI }}
           format: table
           exit-code: 1
