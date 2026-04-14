@@ -134,15 +134,16 @@ jobs:
         env:
           TARGET_COLOR: ${{ steps.color.outputs.target }}
         run: |
-          BACKEND_IP=$(kubectl get pod -n "$NAMESPACE" -l app=expense-backend,color=$TARGET_COLOR -o jsonpath='{.items[0].status.podIP}')
-          FRONTEND_IP=$(kubectl get pod -n "$NAMESPACE" -l app=expense-frontend,color=$TARGET_COLOR -o jsonpath='{.items[0].status.podIP}')
-
-          kubectl run smoke-backend --rm -i --restart=Never -n "$NAMESPACE" --image=curlimages/curl:8.8.0 -- \
-            curl -fsS "http://$BACKEND_IP:8080/api/health"
-
-          kubectl run smoke-frontend --rm -i --restart=Never -n "$NAMESPACE" --image=curlimages/curl:8.8.0 -- \
-            curl -fsSI "http://$FRONTEND_IP/"
-
+          echo "Waiting 15s for pods to be fully ready..."
+          sleep 15
+          kubectl run smoke-backend --rm -i --restart=Never -n "$NAMESPACE" \
+            --image=curlimages/curl:8.8.0 -- \
+            curl -fsS "http://backend-svc.$NAMESPACE.svc.cluster.local:8080/api/health"
+          echo "✅ Backend smoke test passed"
+          kubectl run smoke-frontend --rm -i --restart=Never -n "$NAMESPACE" \
+            --image=curlimages/curl:8.8.0 -- \
+            curl -fsSI "http://frontend-svc.$NAMESPACE.svc.cluster.local:80/"
+          echo "✅ Frontend smoke test passed"
       - name: Switch services to target color (cutover)
         env:
           TARGET_COLOR: ${{ steps.color.outputs.target }}
