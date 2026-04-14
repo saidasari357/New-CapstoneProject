@@ -8,7 +8,7 @@ resource "azurerm_service_plan" "this" {
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   os_type             = "Linux"
-  sku_name            = "P1v3"
+  sku_name = "S1"
 }
 
 resource "azurerm_linux_web_app" "frontend" {
@@ -25,6 +25,7 @@ resource "azurerm_linux_web_app" "frontend" {
   site_config {
     always_on                              = true
     health_check_path                      = "/"
+        health_check_eviction_time_in_min      = 2
     container_registry_use_managed_identity = true
 
     application_stack {
@@ -52,6 +53,7 @@ resource "azurerm_linux_web_app" "backend" {
   site_config {
     always_on                              = true
     health_check_path                      = "/api/health"
+        health_check_eviction_time_in_min      = 2
     container_registry_use_managed_identity = true
 
     application_stack {
@@ -73,6 +75,7 @@ resource "azurerm_linux_web_app_slot" "frontend_green" {
   site_config {
     always_on                              = true
     health_check_path                      = "/"
+        health_check_eviction_time_in_min      = 2
     container_registry_use_managed_identity = true
 
     application_stack {
@@ -98,6 +101,7 @@ resource "azurerm_linux_web_app_slot" "backend_green" {
   site_config {
     always_on                              = true
     health_check_path                      = "/api/health"
+        health_check_eviction_time_in_min      = 2
     container_registry_use_managed_identity = true
 
     application_stack {

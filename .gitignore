@@ -18,3 +18,4 @@ frontend/dist/
 
 # IDE
 .vscode/
+infra/terraform/terraform.tfvars
